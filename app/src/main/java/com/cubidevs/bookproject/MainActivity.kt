@@ -79,8 +79,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     infoTextView.text =
-                        getString(
-                            R.string.info,
+                        getString( R.string.info,
                             nameBook,
                             author,
                             pages,
