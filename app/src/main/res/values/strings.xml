@@ -28,5 +28,7 @@
     <string name="does_not_have_account"><u>¡No tienes Cuenta Resgistrate!</u></string>
     <string name="repeat_password">Repita la contraseña</string>
     <string name="resgister">Registrar</string>
+    <string name="example_title">El Sicoanalista</string>
+    <string name="example_author">John Kat</string>
 
 </resources>

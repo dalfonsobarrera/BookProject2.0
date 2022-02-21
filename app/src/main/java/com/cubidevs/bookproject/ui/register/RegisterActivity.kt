@@ -1,10 +1,11 @@
-package com.cubidevs.bookproject
+package com.cubidevs.bookproject.ui.register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.cubidevs.bookproject.databinding.ActivityRegisterBinding
+import com.cubidevs.bookproject.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 

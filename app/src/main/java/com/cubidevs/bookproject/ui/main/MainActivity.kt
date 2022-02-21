@@ -1,10 +1,16 @@
-package com.cubidevs.bookproject
+package com.cubidevs.bookproject.ui.main
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cubidevs.bookproject.R
 import com.cubidevs.bookproject.databinding.ActivityMainBinding
+import com.cubidevs.bookproject.ui.login.LoginActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,15 +20,16 @@ class MainActivity : AppCompatActivity() {
     private var cal = Calendar.getInstance()
     private var publicationDate = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
-
+        Log.d("state","onCreate")
         setContentView(mainBinding.root)
 
         //     val nameBookEditText : EditText = findViewById(R.id.name_book_edit_text)
 
-        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+  /*      val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -79,7 +86,8 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     infoTextView.text =
-                        getString( R.string.info,
+                        getString(
+                            R.string.info,
                             nameBook,
                             author,
                             pages,
@@ -91,5 +99,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+  */  }
+
+   /* override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_overflow, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.menu_sign_out -> goToLoginActivity()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+*/
+    private fun goToLoginActivity(){
+        val intent = Intent (this, LoginActivity::class.java)
+        intent.flags  = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }
