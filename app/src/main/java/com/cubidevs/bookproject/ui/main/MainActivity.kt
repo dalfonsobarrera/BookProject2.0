@@ -101,8 +101,8 @@ class MainActivity : AppCompatActivity() {
         }
   */  }
 
-   /* override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_overflow, menu)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.overflow_menu, menu)
         return true
     }
 
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-*/
+
     private fun goToLoginActivity(){
         val intent = Intent (this, LoginActivity::class.java)
         intent.flags  = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
