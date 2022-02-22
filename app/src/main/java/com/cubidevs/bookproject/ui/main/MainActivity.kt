@@ -1,24 +1,22 @@
 package com.cubidevs.bookproject.ui.main
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.cubidevs.bookproject.R
 import com.cubidevs.bookproject.databinding.ActivityMainBinding
 import com.cubidevs.bookproject.ui.login.LoginActivity
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
+    /*
     private var cal = Calendar.getInstance()
-    private var publicationDate = ""
+    private var publicationDate = ""*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

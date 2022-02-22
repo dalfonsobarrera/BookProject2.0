@@ -1,0 +1,470 @@
+Index: app/src/main/res/layout/activity_splash.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_splash.xml b/app/src/main/res/layout/activity_splash.xml
+new file mode 100644
+--- /dev/null	(date 1644153652062)
++++ b/app/src/main/res/layout/activity_splash.xml	(date 1644153652062)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".SplashActivity">
++
++    <ImageView
++        android:id="@+id/imageView"
++        android:layout_width="200dp"
++        android:layout_height="200dp"
++        android:src="@mipmap/ic_launcher"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:contentDescription="@string/todo" />
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/cubidevs/bookproject/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/cubidevs/bookproject/LoginActivity.kt b/app/src/main/java/com/cubidevs/bookproject/LoginActivity.kt
+new file mode 100644
+--- /dev/null	(date 1644167695610)
++++ b/app/src/main/java/com/cubidevs/bookproject/LoginActivity.kt	(date 1644167695610)
+@@ -0,0 +1,24 @@
++package com.cubidevs.bookproject
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import com.cubidevs.bookproject.databinding.ActivityLoginBinding
++
++class LoginActivity : AppCompatActivity() {
++
++    private  lateinit var loginBinding: ActivityLoginBinding
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        loginBinding = ActivityLoginBinding.inflate(layoutInflater)
++
++    loginBinding.registerTextView.setOnClickListener {
++        val intent = Intent(this, RegisterActivity::class.java)
++        startActivity(intent)
++    }
++
++
++        setContentView(loginBinding.root)
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_login.xml b/app/src/main/res/layout/activity_login.xml
+new file mode 100644
+--- /dev/null	(date 1644166461365)
++++ b/app/src/main/res/layout/activity_login.xml	(date 1644166461365)
+@@ -0,0 +1,79 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".LoginActivity">
++
++    <ImageView
++        android:id="@+id/logo_image_view"
++        android:layout_width="200dp"
++        android:layout_height="200dp"
++        android:layout_marginTop="128dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@mipmap/ic_launcher" />
++
++    <com.google.android.material.textfield.TextInputLayout
++        android:id="@+id/email_text_input_layout"
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="32dp"
++        android:layout_marginEnd="8dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/logo_image_view">
++
++        <com.google.android.material.textfield.TextInputEditText
++            android:id="@+id/email_edit_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/email" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <com.google.android.material.textfield.TextInputLayout
++        android:id="@+id/password_text_input_layout"
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="8dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
++
++        <com.google.android.material.textfield.TextInputEditText
++            android:id="@+id/password_edit_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/password" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <Button
++        android:id="@+id/sign_in_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="@string/sign_in"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout" />
++
++    <TextView
++        android:id="@+id/register_text_view"
++        style="@style/TextLink"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="@string/does_not_have_account"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+--- a/app/src/main/res/values/themes.xml	(revision ca1e59a8cf430bcac44683c34b6c39a1ca80fcea)
++++ b/app/src/main/res/values/themes.xml	(date 1644163979240)
+@@ -1,6 +1,6 @@
+ <resources xmlns:tools="http://schemas.android.com/tools">
+     <!-- Base application theme. -->
+-    <style name="Theme.BookProject" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
++    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+         <!-- Primary brand color. -->
+         <item name="colorPrimary">@color/primary</item>
+         <item name="colorPrimaryVariant">@color/primary_dark</item>
+@@ -14,6 +14,12 @@
+         <!-- Customize your theme here. -->
+     </style>
+ 
++    <style name="AppTheme.Splash" parent ="Theme.MaterialComponents.DayNight.NoActionBar">
++        <item name="android:windowFullscreen">true</item>
++        <item name="android:windowSplashscreenContent">@null</item>>
++    </style>
++
++
+     <style name="TextViewTitle">
+         <item name="android:textColor">@color/black</item>
+         <item name="android:textSize">20sp</item>
+@@ -29,6 +35,11 @@
+     <style name="TextViewNormal">
+         <item name="android:textColor">@color/gray</item>
+         <item name="android:textSize">14sp</item>
++    </style>
++    <style name="TextLink">
++        <item name="android:textColor">@color/blue</item>
++        <item name="android:textSize">16sp</item>
++        <item name="android:textStyle">italic</item>
+     </style>
+ </resources>
+ 
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision ca1e59a8cf430bcac44683c34b6c39a1ca80fcea)
++++ b/app/src/main/res/values/strings.xml	(date 1644166427673)
+@@ -21,5 +21,12 @@
+     <string name="number_five">5</string>
+     <string name="publication_date">Fecha de publicación</string>
+     <string name="date_format">dd-mm-yyyy</string>
++    <string name="todo">TODO</string>
++    <string name="email">Correo electronico</string>
++    <string name="password">Contraseña</string>
++    <string name="sign_in">Inciar Sesión</string>
++    <string name="does_not_have_account"><u>¡No tienes Cuenta Resgistrate!</u></string>
++    <string name="repeat_password">Repita la contraseña</string>
++    <string name="resgister">Registrar</string>
+ 
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_register.xml b/app/src/main/res/layout/activity_register.xml
+new file mode 100644
+--- /dev/null	(date 1644168938149)
++++ b/app/src/main/res/layout/activity_register.xml	(date 1644168938149)
+@@ -0,0 +1,91 @@
++
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    tools:context=".LoginActivity">
++
++    <ImageView
++        android:id="@+id/logo_image_view"
++        android:layout_width="200dp"
++        android:layout_height="200dp"
++        android:layout_marginTop="128dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@mipmap/ic_launcher" />
++
++    <com.google.android.material.textfield.TextInputLayout
++        android:id="@+id/email_text_input_layout"
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="32dp"
++        android:layout_marginEnd="8dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/logo_image_view">
++
++        <com.google.android.material.textfield.TextInputEditText
++            android:id="@+id/email_edit_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/email" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <com.google.android.material.textfield.TextInputLayout
++        android:id="@+id/password_text_input_layout"
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="8dp"
++        app:endIconMode="password_toggle"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout">
++
++        <com.google.android.material.textfield.TextInputEditText
++            android:id="@+id/password_edit_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/password"
++            android:inputType="textPassword" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <com.google.android.material.textfield.TextInputLayout
++        android:id="@+id/rep_password_text_input_layout"
++        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="8dp"
++        app:endIconMode="password_toggle"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/password_text_input_layout">
++
++        <com.google.android.material.textfield.TextInputEditText
++            android:id="@+id/rep_password_edit_text"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:hint="@string/repeat_password"
++            android:inputType="textPassword" />
++    </com.google.android.material.textfield.TextInputLayout>
++
++    <Button
++        android:id="@+id/register_button"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="16dp"
++        android:text="@string/resgister"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.498"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/rep_password_text_input_layout" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/cubidevs/bookproject/SplashActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/cubidevs/bookproject/SplashActivity.kt b/app/src/main/java/com/cubidevs/bookproject/SplashActivity.kt
+new file mode 100644
+--- /dev/null	(date 1644165524495)
++++ b/app/src/main/java/com/cubidevs/bookproject/SplashActivity.kt	(date 1644165524495)
+@@ -0,0 +1,37 @@
++package com.cubidevs.bookproject
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import android.view.LayoutInflater
++import com.cubidevs.bookproject.databinding.ActivitySplashBinding
++import java.util.*
++import kotlin.concurrent.timerTask
++
++
++class SplashActivity : AppCompatActivity() {
++
++    private lateinit var splashBinding: ActivitySplashBinding
++
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        splashBinding = ActivitySplashBinding.inflate(layoutInflater)
++        setContentView(splashBinding.root)
++
++        val timer = Timer()
++        timer.schedule(
++            timerTask {
++                goToLoginActivity()
++        }, 2000
++        )
++
++    }
++
++    private fun goToLoginActivity() {
++        val intent = Intent(this, LoginActivity::class.java)
++        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or  Intent.FLAG_ACTIVITY_CLEAR_TASK
++        startActivity(intent)
++
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/cubidevs/bookproject/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/cubidevs/bookproject/RegisterActivity.kt b/app/src/main/java/com/cubidevs/bookproject/RegisterActivity.kt
+new file mode 100644
+--- /dev/null	(date 1644168673793)
++++ b/app/src/main/java/com/cubidevs/bookproject/RegisterActivity.kt	(date 1644168673793)
+@@ -0,0 +1,34 @@
++package com.cubidevs.bookproject
++
++import android.content.Intent
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++import android.widget.Toast
++import com.cubidevs.bookproject.databinding.ActivityRegisterBinding
++
++class RegisterActivity : AppCompatActivity() {
++
++    private lateinit var registerBinding: ActivityRegisterBinding
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        registerBinding = ActivityRegisterBinding.inflate(layoutInflater)
++        setContentView(registerBinding.root)
++
++        with(registerBinding){
++            registerButton.setOnClickListener {
++                val email = emailEditText.text.toString()
++                val passsword = passwordEditText.text.toString()
++                val repPassword = repPasswordEditText.text.toString()
++
++                if (passsword == repPassword){
++                    val intent= Intent(this@RegisterActivity, LoginActivity::class.java )
++                    intent.putExtra("email", email)
++                    intent.putExtra("password", passsword)
++                    startActivity(intent)
++                } else
++                    Toast.makeText(applicationContext, "Las contraseñas no coinciden ", Toast.LENGTH_SHORT).show()
++            }
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/cubidevs/bookproject/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/cubidevs/bookproject/MainActivity.kt b/app/src/main/java/com/cubidevs/bookproject/MainActivity.kt
+--- a/app/src/main/java/com/cubidevs/bookproject/MainActivity.kt	(revision ca1e59a8cf430bcac44683c34b6c39a1ca80fcea)
++++ b/app/src/main/java/com/cubidevs/bookproject/MainActivity.kt	(date 1644152811924)
+@@ -79,8 +79,7 @@
+                     }
+ 
+                     infoTextView.text =
+-                        getString(
+-                            R.string.info,
++                        getString( R.string.info,
+                             nameBook,
+                             author,
+                             pages,
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision ca1e59a8cf430bcac44683c34b6c39a1ca80fcea)
++++ b/app/src/main/AndroidManifest.xml	(date 1644166062280)
+@@ -8,16 +8,26 @@
+         android:label="@string/app_name"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+-        android:theme="@style/Theme.BookProject">
++        android:theme="@style/AppTheme">
++        <activity
++            android:name=".RegisterActivity"
++            android:exported="false" />
+         <activity
+-            android:name=".MainActivity"
+-            android:exported="true">
++            android:name=".LoginActivity"
++            android:exported="false" />
++        <activity
++            android:name=".SplashActivity"
++            android:exported="true"
++            android:theme="@style/AppTheme.Splash">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+         </activity>
++        <activity
++            android:name=".MainActivity"
++            android:exported="true" />
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
