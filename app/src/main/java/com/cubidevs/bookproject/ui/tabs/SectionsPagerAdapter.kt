@@ -1,4 +1,4 @@
-package com.cubidevs.bookproject.ui.tabs.ui.main
+package com.cubidevs.bookproject.ui.tabs
 
 import android.content.Context
 import androidx.fragment.app.Fragment
