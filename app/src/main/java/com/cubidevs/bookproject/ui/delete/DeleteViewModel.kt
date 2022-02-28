@@ -13,12 +13,12 @@ class DeleteViewModel : ViewModel() {
 
     val bookRepository = BookRepository()
 
-    private val findbook: MutableLiveData<Book> = MutableLiveData()
-    val findBookDone: LiveData<Book> = findbook
+    private val findBook: MutableLiveData<Book> = MutableLiveData()
+    val findBookDone: LiveData<Book> = findBook
 
     fun searchBook(nameBook: String) {
         GlobalScope.launch(Dispatchers.IO){
-       findbook.postValue( bookRepository.searchBook(nameBook))
+       findBook.postValue( bookRepository.searchBook(nameBook))
        }
     }
 

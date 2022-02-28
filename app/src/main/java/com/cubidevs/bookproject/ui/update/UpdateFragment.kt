@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.cubidevs.bookproject.databinding.FragmentUpdateBinding
+import com.cubidevs.bookproject.local.Book
 
 class UpdateFragment : Fragment() {
 
@@ -24,5 +26,34 @@ class UpdateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        updateViewModel.findBookDone.observe(viewLifecycleOwner) { result ->
+            onFindBookDoneSubscribe(result)
+
+        }
+        with(updateBinding){
+            searchButton.setOnClickListener {
+                updateViewModel.searchBook(nameEditText.text.toString())
+            }
+        }
+    }
+
+    private fun onFindBookDoneSubscribe(book: Book) {
+        with(updateBinding){
+            updateFormLayout.isVisible = true
+            searchButton.isVisible = false
+            updateButton.isVisible = true
+            nameAuthorEditText.setText(book.author)
+            pagesEditText.setText(book.pages.toString())
+            abstractEditText.setText(book.resume)
+            publicationDateButton.text = book.publicationDate
+            when (book.score) {
+                1 -> oneRadioButton.isChecked = true
+                2 -> twoRadioButton.isChecked = true
+                3 -> threeRadioButton.isChecked = true
+                4 -> fourRadioButton.isChecked = true
+                else -> fiveRadioButton.isChecked = true
+            }
+        }
     }
 }

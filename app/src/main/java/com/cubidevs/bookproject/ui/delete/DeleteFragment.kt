@@ -44,12 +44,12 @@ class DeleteFragment : Fragment() {
     private fun onFindBookDoneSubscribe(book: Book) {
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getString(R.string.warning_tittle))
-            .setMessage(resources.getString(R.string.delete_book_msg,book.name, book.author))
+            .setTitle(resources.getString(R.string.warning_title))
+            .setMessage(resources.getString(R.string.delete_book_msg, book.name, book.author))
             .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+
             }
             .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
-                //Toast.makeText(requireContext(),"Voy a eliminar", Toast.LENGTH_SHORT).show()
                 deleteViewModel.deleteBook(book)
                 deleteBinding.nameEditText.text?.clear()
             }

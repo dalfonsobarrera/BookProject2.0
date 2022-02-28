@@ -51,5 +51,7 @@
     <string name="delete_book_msg">¿Desea eliminar el libro %s del autor %s?</string>
     <string name="cancel">Cancelar</string>
     <string name="accept">Aceptar</string>
+    <string name="warning_title">Peligro</string>
+    <string name="update">actualizar</string>
 
 </resources>
