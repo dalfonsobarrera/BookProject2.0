@@ -18,7 +18,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         detailBinding = FragmentDetailBinding.inflate(inflater, container, false)
         detailViewModel = ViewModelProvider(this)[DetailViewModel::class.java]
         return detailBinding.root

@@ -7,26 +7,53 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.cubidevs.bookproject.R
+import com.cubidevs.bookproject.databinding.FragmentDeleteBinding
+import com.cubidevs.bookproject.local.Book
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class DeleteFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = DeleteFragment()
-    }
-
-    private lateinit var viewModel: DeleteViewModel
+    private lateinit var deleteBinding: FragmentDeleteBinding
+    private lateinit var deleteViewModel: DeleteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_delete, container, false)
+    ): View {
+        deleteBinding = FragmentDeleteBinding.inflate(inflater, container, false)
+        deleteViewModel = ViewModelProvider(this)[DeleteViewModel::class.java]
+        return deleteBinding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DeleteViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        deleteViewModel.findBookDone.observe(viewLifecycleOwner) { result ->
+            onFindBookDoneSubscribe(result)
+
+        }
+
+        with(deleteBinding) {
+           searchButton.setOnClickListener {
+            deleteViewModel.searchBook(nameEditText.text.toString())
+        }
+
+       }
+    }
+
+    private fun onFindBookDoneSubscribe(book: Book) {
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.warning_tittle))
+            .setMessage(resources.getString(R.string.delete_book_msg,book.name, book.author))
+            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+            }
+            .setPositiveButton(resources.getString(R.string.accept)) { dialog, which ->
+                //Toast.makeText(requireContext(),"Voy a eliminar", Toast.LENGTH_SHORT).show()
+                deleteViewModel.deleteBook(book)
+                deleteBinding.nameEditText.text?.clear()
+            }
+            .show()
     }
 
 }

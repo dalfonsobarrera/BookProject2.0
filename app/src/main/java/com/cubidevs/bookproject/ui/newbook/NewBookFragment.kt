@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.cubidevs.bookproject.databinding.FragmentNewBookBinding
-import com.cubidevs.bookproject.model.Book
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,7 +16,7 @@ import java.util.*
 class NewBookFragment : Fragment() {
 
     private lateinit var newBookBinding: FragmentNewBookBinding
-    private lateinit var viewModel: NewBookViewModel
+    private lateinit var newBookViewModel: NewBookViewModel
     private var cal = Calendar.getInstance()
     private var publicationDate = ""
 
@@ -27,12 +25,22 @@ class NewBookFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         newBookBinding = FragmentNewBookBinding.inflate(inflater, container,false)
-        viewModel = ViewModelProvider(this)[NewBookViewModel::class.java]
+        newBookViewModel = ViewModelProvider(this)[NewBookViewModel::class.java]
         return newBookBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        newBookViewModel.msgDone.observe(viewLifecycleOwner) { result ->
+            onMsgDoneSubscribe(result)
+
+        }
+
+        newBookViewModel.dateValidate.observe(viewLifecycleOwner) { result ->
+            onDataValidatedSubscribe(result)
+
+        }
 
         val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
             cal.set(Calendar.YEAR, year)
@@ -60,50 +68,46 @@ class NewBookFragment : Fragment() {
 
             saveButton.setOnClickListener {
 
-                if (nameBookEditText.text?.isEmpty() == true ||
-                    nameAuthorEditText.text?.isEmpty() == true ||
-                    pagesEditText.text?.isEmpty() == true
-                ) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Debe digitar nombre, autor y número de páginas",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-
-                    val nameBook: String = nameBookEditText.text.toString()
-                    val author = nameAuthorEditText.text.toString()
-                    val pages = pagesEditText.text.toString().toInt()
-                    val abstract = abstractEditText.text.toString()
-
-                    var genre = ""
-
-                    if (suspenseCheckBox.isChecked) genre = "Suspenso"
-                    if (terrorCheckBox.isChecked) genre += " Terror"
-                    if (infantileCheckBox.isChecked) genre += "Infantil"
-                    if (fictionCheckBox.isChecked) genre += " Ficción"
-
-                    val score = when {
-                        oneRadioButton.isChecked -> 1
-                        twoRadioButton.isChecked -> 2
-                        threeRadioButton.isChecked -> 3
-                        fourRadioButton.isChecked -> 4
-                        else -> 5
-                    }
-
-                    val book = Book(
-                        name = nameBook,
-                        author = author,
-                        pages = pages,
-                        abstract = abstract,
-                        genre = genre,
-                        score = score,
-                        publicationDate = publicationDate
+                newBookViewModel.validateFields(
+                    nameBookEditText.text.toString(),
+                    nameAuthorEditText.text.toString(),
+                    pagesEditText.text.toString()
                     )
-                    findNavController().navigate(NewBookFragmentDirections.actionNewBookFragmentToDetailFragment(book))
                 }
             }
         }
+    private fun onDataValidatedSubscribe(result: Boolean) {
+         with(newBookBinding){
+            val nameBook: String = nameBookEditText.text.toString()
+            val author = nameAuthorEditText.text.toString()
+            val pages = pagesEditText.text.toString().toInt()
+            val resume = abstractEditText.text.toString()
+
+             var genre = ""
+
+             if (suspenseCheckBox.isChecked) genre = "Suspenso"
+             if (terrorCheckBox.isChecked) genre += " Terror"
+             if (infantileCheckBox.isChecked) genre += "Infantil"
+             if (fictionCheckBox.isChecked) genre += " Ficción"
+
+             val score = when {
+                oneRadioButton.isChecked -> 1
+                twoRadioButton.isChecked -> 2
+                threeRadioButton.isChecked -> 3
+                fourRadioButton.isChecked -> 4
+                else -> 5
+             }
+
+             newBookViewModel.saveBook(nameBook, author, pages, resume, genre, score, publicationDate)
+         }
+    }
+
+    private fun onMsgDoneSubscribe(msg: String?) {
+        Toast.makeText(
+            requireContext(),
+            msg,
+            Toast.LENGTH_SHORT
+        ).show()
 
     }
 }
